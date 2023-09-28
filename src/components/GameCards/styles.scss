@@ -1,0 +1,17 @@
+@import './components/GameCard/styles.scss';
+
+.card{
+  height: 400px;
+  width: 300px;
+  margin-bottom: 12px;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  .card-img{
+    height: 100%;
+    object-fit: cover;
+  }
+  .card-title.h5{
+    color: white;
+  }
+}
