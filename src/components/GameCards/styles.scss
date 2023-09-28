@@ -1,8 +1,8 @@
 @import './components/GameCard/styles.scss';
 
-.card{
-  height: 400px;
-  width: 300px;
+.cards-content .card{
+  height: 300px;
+  width: 240px;
   margin-bottom: 12px;
   transition: transform 0.5s;
   transform-style: preserve-3d;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import GameCard from './components/GameCard';
 import MessageModal from './components/MessageModal';
 import NumberDropdown from './components/NumberDropdown';
@@ -101,38 +101,43 @@ const GameCards = ({resetGame}) => {
         onCloseGame={resetGame} 
         onRestartGame={handleResetValue}
       />
-      <Row className="justify-content-md-center">
-        <Col xs lg="2">
-          Aciertos: {matches}
+      <Row className='justify-content-between'>
+        <Col className='col-auto mr-auto'>
+          <div class="card" style={{width: "18rem"}}>
+            <div class="card-header">
+              Stats
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Matches: {matches}</li>
+              <li class="list-group-item">Errors: {errorCount}</li>
+              <li class="list-group-item">Total attempts: {matches + errorCount}</li>
+            </ul>
+          </div>
         </Col>
-        <Col md="auto">
-          Errores: {errorCount}
-        </Col>
-        <Col xs lg="2">
-          Total intentos: {matches + errorCount}
+        <Col className='col-auto'>
+          <div class="card" style={{width: "18rem"}}>
+            <div class="card-header">
+              Options
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <NumberDropdown setNumberCards={setNumberCards} numberCards={numberCards} />
+              </li>
+              <li class="list-group-item">
+                <ButtonGroup vertical>
+                  <Button variant="danger" onClick={handleResetValue}>
+                    Reset Game
+                  </Button>
+                  <Button variant="danger" onClick={resetGame}>
+                    Exit Game
+                  </Button>
+                </ButtonGroup>
+              </li>
+            </ul>
+          </div>
         </Col>
       </Row>
-      <Row className="justify-content-md-center">
-        <Col xs lg="2">
-          <Button variant="danger" onClick={handleResetValue}>
-            Reset Game
-          </Button>
-        </Col>
-        <Col xs lg="2">
-          <Button variant="danger" onClick={resetGame}>
-            Exit Game
-          </Button>
-        </Col>
-        <Col xs lg="2">
-          <NumberDropdown setNumberCards={setNumberCards} numberCards={numberCards} />
-        </Col>
-        {/* <Col xs lg="2">
-          <Button variant="primary" onClick={() => setModalShow(true)}>
-            Modal
-          </Button>
-        </Col> */}
-      </Row>
-      <Row>
+      <Row className="cards-content d-flex justify-content-center">
         {cards.map((card, index) => (
           <GameCard
             key={index}
