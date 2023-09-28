@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import GameCard from './components/GameCard';
 import MessageModal from './components/MessageModal';
+import NumberDropdown from './components/NumberDropdown';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-const urlPath = "https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=3";
+const urlPath = "https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries";
 
 const GameCards = ({resetGame}) => {
   const [cards, setCards] = useState([]);
@@ -14,6 +15,7 @@ const GameCards = ({resetGame}) => {
   const [errorCount, setErrorCount] = useState(0);
   const [matchedCards, setMatchedCards] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const [numberCards, setNumberCards] = useState(5);
   
   const shuffleArray = (array) => {
     const shuffledArray = [...array];
@@ -42,11 +44,37 @@ const GameCards = ({resetGame}) => {
   };
 
   const handleResetValue = () => {
-    setFlippedCards([])
-    setMatches(0)
-    setMatchedCards([])
-    setModalShow(false)
+    setFlippedCards([]);
+    setMatches(0);
+    setMatchedCards([]);
+    setModalShow(false);
   }
+
+  const formatCards = (cardList) => {
+    const mappingCards = cardList.data.entries.map(img => (
+      { 
+        image: img.fields.image.url, 
+        name: img.fields.image.title, 
+      }
+    ))
+    // Duplicar las cartas para que haya pares
+    const duplicatedCards = [...mappingCards, ...mappingCards].map(dc => ({ ...dc, uuid: uuidv4() }));
+    // Barajar las cartas.
+    return shuffleArray(duplicatedCards);
+  }
+
+  useEffect(() => {
+    const getCards = async() => {
+      const response = await axios.get(urlPath, {
+        params: {
+          per_page: numberCards
+        }
+      })
+      setCards(formatCards(response));
+    }
+    getCards();
+    handleResetValue();
+  }, [numberCards]);
 
   useEffect(() => {
     if(matchedCards.length && matchedCards.length === cards.length){
@@ -56,18 +84,12 @@ const GameCards = ({resetGame}) => {
 
   useEffect(() => {
     const getCards = async() => {
-      const response = await axios.get(urlPath);
-      const mappingCards = response.data.entries.map(img => (
-        { 
-          image: img.fields.image.url, 
-          name: img.fields.image.title, 
+      const response = await axios.get(urlPath, {
+        params: {
+          per_page: numberCards
         }
-      ))
-      // Duplicar las cartas para que haya pares
-      const duplicatedCards = [...mappingCards, ...mappingCards].map(dc => ({ ...dc, uuid: uuidv4() }));
-      // Barajar las cartas.
-      const shuffledCards = shuffleArray(duplicatedCards);
-      setCards(shuffledCards);
+      })
+      setCards(formatCards(response));
     }
     getCards();
   }, []);
@@ -100,6 +122,9 @@ const GameCards = ({resetGame}) => {
           <Button variant="danger" onClick={resetGame}>
             Exit Game
           </Button>
+        </Col>
+        <Col xs lg="2">
+          <NumberDropdown setNumberCards={setNumberCards} numberCards={numberCards} />
         </Col>
         {/* <Col xs lg="2">
           <Button variant="primary" onClick={() => setModalShow(true)}>
