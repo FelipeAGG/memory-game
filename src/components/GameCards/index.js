@@ -96,11 +96,11 @@ const GameCards = ({resetGame}) => {
 
   return (
     <Container>
-      <MessageModal
+      {modalShow && <MessageModal
         show={modalShow}
         onCloseGame={resetGame} 
         onRestartGame={handleResetValue}
-      />
+      />}
       <Row className='justify-content-between'>
         <Col className='col-auto mr-auto'>
           <div class="card" style={{width: "18rem"}}>

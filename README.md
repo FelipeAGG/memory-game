@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Juego de Memoria (Memorize) en React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este es un juego de memoria (Memorize) simple creado en React utilizando Create React App. El juego consiste en emparejar cartas y se puede configurar para mostrar diferentes opciones(cantidad de cartas).
 
-## Available Scripts
+![Captura de pantalla del juego](images/IOP.jpg)
+![Captura de pantalla del juego](images/first.png)
+![Captura de pantalla del juego](images/second.png)
+![Captura de pantalla del juego](images/third.png)
 
-In the project directory, you can run:
+## Funcionalidades
 
-### `npm start`
+- **Juego de Memoria**: Encuentra todas las parejas de cartas en el menor número de intentos posible.
+- **Configuración de Opciones**: Puedes modificar la cantidad de opciones para el juego.
+- **Registro de Intentos**: El juego registra el número total de intentos, aciertos y errores.
+- **Reinicio del Juego**: Puedes reiniciar el juego en cualquier momento.
+- **Salida del Juego**: Puedes salir del juego en cualquier momento.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Cómo Iniciar el Juego
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Abre la aplicación en tu navegador.
+2. Introduce tu nombre para comenzar.
+3. Ajusta la cantidad de opciones según tus preferencias.
+4. Haz clic en "Iniciar Juego" para comenzar a jugar.
+5. Encuentra todas las parejas de cartas.
 
-### `npm test`
+## API de Opciones
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Las opciones para el juego se obtienen de la siguiente API:
+GET: https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries?per_page=20
 
-### `npm run build`
+Asegúrate de tener una conexión a Internet activa para cargar las opciones.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tecnologías Utilizadas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- React
+- Create React App
+- Bootstrap (para estilos)
+- Axios (para realizar solicitudes a la API)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Ejecución Local
 
-### `npm run eject`
+1. Clona este repositorio:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+git clone https://github.com/FelipeAGG/memory-game.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Navega al directorio del proyecto:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+cd /memory-game
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Instala las dependencias:
 
-## Learn More
+npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Inicia la aplicación:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+npm start
 
-### Code Splitting
+5. Abre tu navegador y visita `http://localhost:3000` para jugar.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Personalización
 
-### Analyzing the Bundle Size
+Puedes personalizar el juego y agregar nuevas características según tus necesidades. Siéntete libre de explorar el código fuente y hacer las modificaciones que desees.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Créditos
 
-### Making a Progressive Web App
+Este juego fue creado por Felipe Gallardo.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Licencia
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 function MessageModal(props) {
   const { onCloseGame, onRestartGame, show } = props;
+  const [playerName, setPlayerName] = useState('')
+  useEffect(() => {
+    const localUserName = localStorage.getItem("userName");
+    if(localUserName){
+      setPlayerName(localUserName);
+    }
+  }, [])
   return (
     <Modal
       show={show}
@@ -14,7 +21,7 @@ function MessageModal(props) {
       keyboard={false}
     >
       <Modal.Header>
-        <Modal.Title>Congratulations!</Modal.Title>
+        <Modal.Title>Congratulations {playerName}!</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>You won the memory game!</p>
