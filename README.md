@@ -2,7 +2,7 @@
 
 Este es un juego de memoria (Memorize) simple creado en React utilizando Create React App. El juego consiste en emparejar cartas y se puede configurar para mostrar diferentes opciones(cantidad de cartas).
 
-![Captura de pantalla del juego](images/IOP.jpg)
+![Captura de pantalla del juego](images/logo.jpg)
 ![Captura de pantalla del juego](images/first.png)
 ![Captura de pantalla del juego](images/second.png)
 ![Captura de pantalla del juego](images/third.png)
