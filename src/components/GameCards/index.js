@@ -46,6 +46,7 @@ const GameCards = ({resetGame}) => {
   const handleResetValue = () => {
     setFlippedCards([]);
     setMatches(0);
+    setErrorCount(0);
     setMatchedCards([]);
     setModalShow(false);
   }
