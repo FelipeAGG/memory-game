@@ -35,7 +35,7 @@ Make sure you have an active internet connection to load the options.
 - React
 - Create React App
 - Bootstrap (for styles)
-- Axios (for making API requests)
+- Fetch (for making API requests)
 
 ## Local Execution
 

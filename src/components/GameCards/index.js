@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, ButtonGroup } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
 import GameCard from './components/GameCard';
 import MessageModal from './components/MessageModal';
 import NumberDropdown from './components/NumberDropdown';
-import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
 const urlPath = "https://fed-team.modyo.cloud/api/content/spaces/animals/types/game/entries";
@@ -52,7 +52,7 @@ const GameCards = ({resetGame}) => {
   }
 
   const formatCards = (cardList) => {
-    const mappingCards = cardList.data.entries.map(img => (
+    const mappingCards = cardList.entries.map(img => (
       { 
         image: img.fields.image.url, 
         name: img.fields.image.title, 
@@ -66,12 +66,17 @@ const GameCards = ({resetGame}) => {
 
   useEffect(() => {
     const getCards = async() => {
-      const response = await axios.get(urlPath, {
-        params: {
-          per_page: numberCards
+      try {
+        const response = await fetch(`${urlPath}?per_page=${numberCards}`);
+        if (!response.ok) {
+          throw new Error('La solicitud no fue exitosa');
         }
-      })
-      setCards(formatCards(response));
+        const data = await response.json();
+        setCards(formatCards(data));
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+        throw error;
+      }
     }
     getCards();
     handleResetValue();
@@ -85,12 +90,17 @@ const GameCards = ({resetGame}) => {
 
   useEffect(() => {
     const getCards = async() => {
-      const response = await axios.get(urlPath, {
-        params: {
-          per_page: numberCards
+      try {
+        const response = await fetch(`${urlPath}?per_page=${numberCards}`);
+        if (!response.ok) {
+          throw new Error('La solicitud no fue exitosa');
         }
-      })
-      setCards(formatCards(response));
+        const data = await response.json();
+        setCards(formatCards(data));
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+        throw error;
+      }
     }
     getCards();
   }, []);
@@ -104,27 +114,27 @@ const GameCards = ({resetGame}) => {
       />}
       <Row className='justify-content-between'>
         <Col className='col-auto mr-auto'>
-          <div class="card" style={{width: "18rem"}}>
-            <div class="card-header">
+          <Card style={{width: "18rem"}}>
+            <Card.Header>
               Stats
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Matches: {matches}</li>
-              <li class="list-group-item">Errors: {errorCount}</li>
-              <li class="list-group-item">Total attempts: {matches + errorCount}</li>
+            </Card.Header>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">Matches: {matches}</li>
+              <li className="list-group-item">Errors: {errorCount}</li>
+              <li className="list-group-item">Total attempts: {matches + errorCount}</li>
             </ul>
-          </div>
+          </Card>
         </Col>
         <Col className='col-auto'>
-          <div class="card" style={{width: "18rem"}}>
-            <div class="card-header">
+          <Card style={{width: "18rem"}}>
+            <Card.Header>
               Options
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
+            </Card.Header>
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
                 <NumberDropdown setNumberCards={setNumberCards} numberCards={numberCards} />
               </li>
-              <li class="list-group-item">
+              <li className="list-group-item">
                 <ButtonGroup vertical>
                   <Button variant="danger" onClick={handleResetValue}>
                     Reset Game
@@ -135,7 +145,7 @@ const GameCards = ({resetGame}) => {
                 </ButtonGroup>
               </li>
             </ul>
-          </div>
+          </Card>
         </Col>
       </Row>
       <Row className="cards-content d-flex justify-content-center">
