@@ -16,7 +16,7 @@ const App = () => {
     setGameStarted(false);
   }
 
-  const setLocalStorage = () => {
+  const nameLocalStorage = () => {
     const localUserName = localStorage.getItem("userName");
     if(localUserName){
       setUserName(localUserName);
@@ -31,7 +31,8 @@ const App = () => {
   }, [userName]);
 
   useEffect(() => {
-    setLocalStorage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    nameLocalStorage();
   }, [])
 
   return (
