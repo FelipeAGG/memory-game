@@ -6,7 +6,7 @@ import QuestionMark from './questionMark.svg'
 
 function GameCard({data, isFlipped, onClick}) {
   return (
-    <Col key={data.uuid} className="d-flex justify-content-center">
+    <Col xs={12} sm={6} md={4} lg={3} key={data.uuid} className="d-flex justify-content-center">
       <Card 
         data-testid={data.name}
         onClick={() => onClick(data)} 

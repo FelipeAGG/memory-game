@@ -112,7 +112,7 @@ const GameCards = ({resetGame}) => {
         onCloseGame={resetGame} 
         onRestartGame={handleResetValue}
       />}
-      <Row className='justify-content-between'>
+      <Row className='d-flex justify-content-center'>
         <Col className='col-auto mr-auto'>
           <Card style={{width: "18rem"}}>
             <Card.Header>
